@@ -3,6 +3,16 @@ package global
 import "time"
 
 const (
+	// Authorization
+	Authorization   = "Authorization"
+	Code            = "code"
+	LoginExpireTime = time.Hour * 24 * 7
+	DataExpireTime  = time.Hour * 24 * 30
+	Claims          = "claims"
+	Admin           = "系统"
+)
+
+const (
 	// MinGoVersion 最小 Go 版本
 	MinGoVersion = 1.20
 
