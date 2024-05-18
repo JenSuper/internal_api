@@ -5,12 +5,6 @@ import (
 	"internal_api/api"
 )
 
-func InitServiceRouter(Router *gin.RouterGroup) {
-	{
-
-	}
-}
-
 func InitAuthRouter(Router *gin.RouterGroup) {
 	{
 		Router.GET("/auth/login", api.LoginByCode)
