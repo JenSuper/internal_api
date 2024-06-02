@@ -1,0 +1,86 @@
+definitions:
+  model.CommonDict:
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      status:
+        type: integer
+    type: object
+info:
+  contact:
+    email: support@swagger.io
+    name: Admin
+    url: http://www.swagger.io/support
+  description: Internal API Server 服务
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Internal API Server
+  version: "1.0"
+paths:
+  /api/v1/admin/list:
+    get:
+      consumes:
+      - application/json
+      description: Admin
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              items:
+                $ref: '#/definitions/model.CommonDict'
+              type: array
+            type: object
+      security:
+      - ApiKeyAuth: []
+      summary: Admin
+      tags:
+      - Admin
+  /api/v1/auth/login:
+    get:
+      consumes:
+      - application/json
+      description: 通过code登录，有效期为5分钟
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: 登录接口
+      tags:
+      - 权限相关接口
+  /api/v1/common/dict:
+    get:
+      consumes:
+      - application/json
+      description: 字典
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              items:
+                $ref: '#/definitions/model.CommonDict'
+              type: array
+            type: object
+      security:
+      - ApiKeyAuth: []
+      summary: 字典
+      tags:
+      - 公共接口
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"
