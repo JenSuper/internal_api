@@ -1,0 +1,35 @@
+app:
+  port: 5000
+  name: internal_api
+
+log:
+  path: ./data/logs/internal_api/
+  level: info
+
+redis:
+  addr: 127.0.0.1:6379
+  db: 7
+  maxRetries: 3
+  minIdleConn: 5
+  password:
+  poolSize: 10
+
+mongo:
+  host: 127.0.0.1
+  Port: 27017
+  username: root
+  password: 12345678
+  db: local
+
+
+mysql:
+  host: 127.0.0.1:6379
+  Port: 3306
+  username: root
+  password: 12345678
+  db: report
+
+jwt:
+  signingKey: rMroGmfnRDDpNdkNXItWs
+  whiteList: /api/v1/auth/login
+
