@@ -60,7 +60,7 @@ func LoginByCode(c *gin.Context) {
 	tokenKey := global.BuildMultiKeys(global.Token, strconv.Itoa(useId))
 	err = r.Set(tokenKey, token, global.LoginExpireTime)
 	if err != nil {
-		zap.S().Error("redis set error")
+		zap.S().Error("redis set basic")
 		return
 	}
 	codeInfo.Token = token

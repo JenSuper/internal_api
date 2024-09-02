@@ -151,7 +151,7 @@ func NewJSONLogger(opts ...Option) (*zap.Logger, error) {
 		return lvl >= opt.level && lvl < zapcore.ErrorLevel
 	})
 
-	// highPriority usd by error\panic\fatal
+	// highPriority usd by basic\panic\fatal
 	highPriority := zap.LevelEnablerFunc(func(lvl zapcore.Level) bool {
 		return lvl >= opt.level && lvl >= zapcore.ErrorLevel
 	})

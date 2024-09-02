@@ -47,7 +47,7 @@ QbHmKuHIRFHCFv+XX8c0aK2mDZMUlzJdy4FgD/YCEZ7kZMZKyvZW/ZuV
 func TestEncrypt(t *testing.T) {
 	str, err := NewPublic(publicKey).Encrypt("123456")
 	if err != nil {
-		t.Error("rsa public encrypt error", err)
+		t.Error("rsa public encrypt basic", err)
 		return
 	}
 
@@ -59,7 +59,7 @@ func TestDecrypt(t *testing.T) {
 
 	str, err := NewPrivate(privateKey).Decrypt(decryptStr)
 	if err != nil {
-		t.Error("rsa private decrypt error", err)
+		t.Error("rsa private decrypt basic", err)
 		return
 	}
 
