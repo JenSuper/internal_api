@@ -59,4 +59,5 @@ type Mysql struct {
 	Username string `mapstructure:"username" yaml:"username"`
 	Password string `mapstructure:"password" yaml:"password"`
 	Db       string `mapstructure:"db" yaml:"db"`
+	Enable       string `mapstructure:"enable" yaml:"enable"`
 }
