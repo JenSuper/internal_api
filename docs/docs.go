@@ -151,8 +151,8 @@ var SwaggerInfo = &swag.Spec{
 	Description:      "Internal API Server 服务",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,
-	LeftDelim:        "{{",
-	RightDelim:       "}}",
+	//LeftDelim:        "{{",
+	//RightDelim:       "}}",
 }
 
 func init() {

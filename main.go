@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"go.uber.org/zap"
+	"internal_api/app"
 	"internal_api/global"
 	"internal_api/initialize"
 )
@@ -28,8 +29,11 @@ func main() {
 	// 初始化 api
 	Router := initialize.Routers()
 
-	initialize.RedisClient()
-	initialize.MongoClient()
+	//initialize.RedisClient()
+	//initialize.MongoClient()
+
+	// ws socket init
+	go app.InitSocket()
 
 	zap.S().Info(fmt.Sprintf("\naddr: http://localhost:%d \nswagger: http://localhost:%d/swagger/index.html", global.CONFIG.App.Port, global.CONFIG.App.Port))
 	// 启动 web 服务

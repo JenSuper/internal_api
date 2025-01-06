@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<html>
+<head>
+    <title>Chat App</title>
+</head>
+<body>
+<h1>Chat App</h1>
+<div id="chat"></div>
+<input type="text" id="message" placeholder="Type a message...">
+<button onclick="sendMessage()">Send</button>
+
+<script>
+    // 获取 URL 中的查询字符串参数
+    function getUrlParameter(name) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(name);  // 返回参数值
+    }
+
+    // 获取 `sk` 参数
+    const sk = getUrlParameter('sk');
+    console.log("sk:", sk);
+    var ws = new WebSocket(`ws://localhost:8080/ws?sk=${sk}`);
+
+    ws.onmessage = function(event) {
+        var chat = document.getElementById("chat");
+        var message = document.createElement("div");
+        message.textContent = event.data;
+        chat.appendChild(message);
+    };
+
+    ws.onerror = function(error) {
+        console.error("WebSocket Error:", error);
+    };
+
+    ws.onclose = function(event) {
+        console.log("WebSocket Closed:", event);
+    };
+
+    function sendMessage() {
+        var input = document.getElementById("message");
+        ws.send(input.value);
+        input.value = "";
+    }
+
+    function getRandomName(type = "english") {
+        // 英文名字库
+        const firstNames = ["John", "Alice", "Michael", "Emma", "James", "Sophia", "William", "Olivia", "Daniel", "Isabella"];
+        const lastNames = ["Smith", "Johnson", "Brown", "Taylor", "Anderson", "Harris", "White", "Martin", "Thompson", "Garcia"];
+
+        // 中文名字库
+        const chineseFirstNames = ["王", "李", "张", "刘", "陈", "杨", "黄", "赵", "吴", "周"];
+        const chineseLastNames = ["伟", "芳", "秀英", "敏", "强", "军", "丽", "杰", "艳", "涛"];
+
+        // 昵称库
+        const nicknames = ["ShadowWolf", "FireDragon", "LightningFox", "NightHawk", "CrystalTiger", "SilverBlade", "StormRider", "ThunderBear", "IronPhoenix", "CyberNinja"];
+
+        if (type === "english") {
+            return firstNames[Math.floor(Math.random() * firstNames.length)] + " " +
+                lastNames[Math.floor(Math.random() * lastNames.length)];
+        } else if (type === "chinese") {
+            return chineseFirstNames[Math.floor(Math.random() * chineseFirstNames.length)] +
+                chineseLastNames[Math.floor(Math.random() * chineseLastNames.length)];
+        } else if (type === "nickname") {
+            return nicknames[Math.floor(Math.random() * nicknames.length)];
+        } else {
+            return "Unknown Type";
+        }
+    }
+
+    // 测试
+    // console.log(getRandomName("english"));   // 例如: Alice Brown
+    // console.log(getRandomName("chinese"));   // 例如: 张杰
+    // console.log(getRandomName("nickname"));  // 例如: FireDragon
+
+</script>
+</body>
+</html>
