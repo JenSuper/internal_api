@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/mmcdole/gofeed"
 	"internal_api/pkg/sqllite_base"
+	"internal_api/pkg/websocket_base"
 	"log"
 	"testing"
 )
@@ -40,4 +41,8 @@ func TestFeed(t *testing.T) {
 
 func TestSqllite(t *testing.T) {
 	sqllite_base.Init()
+}
+
+func TestSocket(t *testing.T) {
+	websocket_base.Init()
 }
