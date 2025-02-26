@@ -3,6 +3,7 @@ package test
 import (
 	"fmt"
 	"github.com/mmcdole/gofeed"
+	"internal_api/pkg/sqllite_base"
 	"log"
 	"testing"
 )
@@ -35,4 +36,8 @@ func TestFeed(t *testing.T) {
 		fmt.Println("Description:", item.Description)
 		fmt.Println("---------------")
 	}
+}
+
+func TestSqllite(t *testing.T) {
+	sqllite_base.Init()
 }
