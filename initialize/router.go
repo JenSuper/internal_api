@@ -29,11 +29,12 @@ func Routers() *gin.Engine {
 	// swagger http://localhost:17000/swagger/index.html
 	Router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
-	//ApiGroup := Router.Group("/api/v1")
-	ApiGroup := Router.Group("/api/v1", middlewares.JWTAuth())
+	ApiGroup := Router.Group("/api/v1")
+	//ApiGroup := Router.Group("/api/v1", middlewares.JWTAuth())
 	// 服务初始化
 	router.InitAuthRouter(ApiGroup)
 	router.InitCommonRouter(ApiGroup)
+	router.RedisRouter(ApiGroup)
 
 	return Router
 }

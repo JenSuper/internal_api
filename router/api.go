@@ -16,3 +16,9 @@ func InitCommonRouter(Router *gin.RouterGroup) {
 		Router.GET("/common/dict", api.Dict)
 	}
 }
+
+func RedisRouter(Router *gin.RouterGroup) {
+	{
+		Router.GET("/redis/push", api.Push)
+	}
+}
